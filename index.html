@@ -18,6 +18,23 @@
                     <div class="text-center">
                         <h1>Todo List</h1>
                     </div>
+                    <div class="main-content">
+                        <div class="add-todo">                            
+                            <input type="text" class="form-control mx-3" v-model="newTask" placeholder="Inserisci una task" name="text" @keyup.enter="addNewTask">
+                            <button class="btn btn-primary" @click="addNewTask">Aggiungi</button>
+                        </div>
+                        <ul class="list-unstyled p-5">
+                            <li class="todo-item" v-for="todo,index in todo_list" :key="index">
+                                <div @click="todo.done = !todo.done">
+                                    <span class="cursor-pointer" v-text="todo.text" :class="todo.done ? 'text-decoration-line-through' : ''"></span>
+                                </div>
+                                <div class="buttons">
+                                    <button class="btn btn-success" @click="todo.done = !todo.done"> <i :class="'fas fa-check'"></i></button>
+                                    <button class="btn btn-danger" @click="removeTodo(index)"><i class="fas fa-x"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>               
         </div>
